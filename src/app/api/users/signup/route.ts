@@ -15,6 +15,7 @@ export async function POST(request:NextRequest){
         //check if user is there
         const user = await User.findOne({email})
         if(user){
+             
             return NextResponse.json({error:"User already exist"},{status:400})
         }
 
@@ -29,8 +30,7 @@ export async function POST(request:NextRequest){
         })
         const savedUser = await newUser.save()
         console.log(savedUser);
-        return NextResponse.json({
-            message:"User is created Successfully"},{status:201})
+        return NextResponse.json({message:"User is created Successfully",success:true,savedUser})
         
 
 
